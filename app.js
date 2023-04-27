@@ -42,5 +42,10 @@ app.use('/baskets', basketsRouter);
 app.use('/items', itemsRouter);
 app.use('/users', usersRouter);
 app.use('/orders', ordersRouter);
+app.post('/login/password',
+  passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
+  function(req, res) {
+    res.redirect('/~' + req.user.username);
+  });
 
 module.exports = app;

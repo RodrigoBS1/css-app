@@ -19,20 +19,20 @@ router.post('/', authenticate, async (req, res) => {
   }
 });
 
-// Get all Items, including associated users
+// Get all Users, including associated users
 router.get('/', authenticate, async (req, res) => {
   try {
-    const users = await User.findAll(); // how can we include the ITEM associated with the Items in this response?
+    const users = await User.findAll(); // how can we include the USER associated with the Users in this response?
     res.json(users);
   } catch (error) {
-    res.status(500).json({ message: 'Error retrieving Items', error });
+    res.status(500).json({ message: 'Error retrieving Users', error });
   }
 });
 
 // Get a specific user by ID, including associated users
 router.get('/:id', authenticate, async (req, res) => {
   try {
-    const user = await User.findByPk(req.params.id); // how can we include the ITEM associated with the Items in this response?
+    const user = await User.findByPk(req.params.id); // how can we include the USER associated with the Users in this response?
 
     if (!user) {
       res.status(404).json({ message: 'User not found' });
