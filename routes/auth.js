@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { User } = require("../models");
-const { authenticate } = require('../middlewares/auth');
+
 
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -20,10 +20,6 @@ router.post("/register", async (req, res) => {
     res.status(500).send(err);
   }
 });
-
-router.post('/', authenticate, async (req, res) => {
-    // Route implementation
-  });
 
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { authenticate } = require('../middlewares/auth');
 
 // /* GET Order listing. */
 // router.get('/', function(req, res, next) {
@@ -9,7 +10,7 @@ var router = express.Router();
 const { Order, User, Basket } = require('../models');
 
 // Create a new basket
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
   try {
     const order = await Order.create(req.body);
     res.status(201).json(order);
@@ -19,7 +20,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get all Items, including associated items
-router.get('/', async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
   try {
     const orders = await Order.findAll(); // how can we include the ITEM associated with the Orders in this response?
     res.json(orders);
@@ -29,7 +30,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get a specific item by ID, including associated items
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticate, async (req, res) => {
   try {
     const order = await Order.findByPk(req.params.id); // how can we include the ITEM associated with the Items in this response?
 
@@ -44,7 +45,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update a item by ID
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticate, async (req, res) => {
   try {
     const [updated] = await Order.update(req.body, {
       where: { id: req.params.id },
@@ -62,7 +63,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete a item by ID
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticate, async (req, res) => {
   try {
     const deleted = await Order.destroy({
       where: { id: req.params.id },
