@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { User } = require("../models");
 
-
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
