@@ -19,6 +19,7 @@ module.exports = {
     "username": process.env.DEVELOPMENT_DATABASE_USER,
     "password": process.env.DEVELOPMENT_DATABASE_PASSWORD, //probably null
     "database": process.env.DEVELOPMENT_DATABASE_NAME,
-    "host": process.env.DATABASE_HOST
+    "host": process.env.DATABASE_HOST,
+    "dialect": "postgres"
   }
 }
