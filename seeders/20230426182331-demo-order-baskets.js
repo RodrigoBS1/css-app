@@ -4,12 +4,12 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('OrderBaskets', [
-      { order_Id: 1, basket_Id: 1 },
-      { order_Id: 2, basket_Id: 2 },
-      { order_Id: 3, basket_Id: 3 },
-      { order_Id: 4, basket_Id: 4 },
-      { order_Id: 5, basket_Id: 5 },
-      { order_Id: 6, basket_Id: 1 },
+      { orderId: 1, basketId: 1 },
+      { orderId: 2, basketId: 2 },
+      { orderId: 3, basketId: 3 },
+      { orderId: 4, basketId: 4 },
+      { orderId: 5, basketId: 5 },
+      { orderId: 6, basketId: 1 },
     ]);
   },
 
